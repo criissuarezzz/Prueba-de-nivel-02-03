@@ -147,6 +147,7 @@ class Vehiculos():
                     writer.writerow(vehiculo.to_dict().values())
         
         @staticmethod
-        def borrar_vehiculo():
-            vehiculo=helpers.leer_texto(3,3, "DNI(2 números y una letra):").upper()    #leemos el dni del cliente y  lo pasamos a mayusculas
-            print("Cliente borrado correctamente") if db.Clientes.borrar(dni) else print("No se ha encontrado el cliente") 
+        def borrar(posicion):
+            posicion=int(input("Introduce la posición del vehículo que quieres borrar: "))
+            Vehiculos.lista.pop(posicion)
+            Vehiculos.crear_vehiculos()

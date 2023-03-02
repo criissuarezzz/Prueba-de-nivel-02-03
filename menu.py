@@ -53,4 +53,14 @@ def iniciar():
         elif opcion == "4":
             print("Has elegido eliminar un vehiculo")
             print("Cargando...")
+            db.Vehiculos.borrar(helpers.leer_entero(0, len(db.Vehiculos.lista), "Introduzca la posicion del vehiculo que desea eliminar: "))
+        elif opcion == "5":
+            print("Has elegido salir")
+            print("Cargando...")
+            break
+    
+        input("Pulse una tecla para continuar...")
+
+
+
             
