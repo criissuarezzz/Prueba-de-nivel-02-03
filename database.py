@@ -24,6 +24,9 @@ class Vehículos:
     def __iter__(self):
         return iter(self.vehículos)
     
+    def __len__(self):
+        return len(self.vehículos)
+    
     def __str__(self):
         return str(self.vehículos)
     
