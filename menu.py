@@ -20,7 +20,37 @@ def iniciar():
         helpers.limpiar_pantalla()
     
         if opcion == "1":
-            print()
-            crear_vehiculo()
+            print("Has elegido crear un vehiculo")
+            print("Cargando...")
+            db.Vehiculos.crear_vehiculos()
         elif opcion == "2":
-            listar_vehiculos()
+            print("Has elegido listar los vehiculos")
+            print("Cargando...")
+            db.Vehiculos.listar_vehiculos()
+        elif opcion == "3":
+            print("Has elegido buscar un vehiculo")
+            print("Cargando...")
+            print("Qué atributo desea buscar?")
+            print("1. Color")
+            print("2. Ruedas")
+            print("3. Velocidad")
+            print("4. Cilindrada")
+            print("5. Carga")
+            print("6. Tipo")
+            opcion = input("Opcion: ")
+            if opcion == "1":
+                db.Vehiculos.catalogar_color()
+            elif opcion == "2":
+                db.Vehiculos.catalogar_ruedas()
+            elif opcion == "3":
+                db.Vehiculos.catalogar_velocidad()
+            elif opcion == "4":
+                db.Vehiculos.catalogar_cilindrada()
+            elif opcion == "5":
+                db.Vehiculos.catalogar_carga()
+            elif opcion == "6":
+                db.Vehiculos.catalogar_tipo()
+        elif opcion == "4":
+            print("Has elegido eliminar un vehiculo")
+            print("Cargando...")
+            

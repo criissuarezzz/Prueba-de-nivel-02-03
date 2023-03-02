@@ -1,6 +1,9 @@
 import csv
 import config
 import os
+import platform
+import helpers
+import database as db
 
 class Vehiculo():
     def __init__(self, color, ruedas):
@@ -131,4 +134,19 @@ class Vehiculos():
                 if vehiculo.velocidad == velocidad:
                     print(vehiculo)
         
+        @staticmethod
+        def listar_vehiculos():
+            for vehiculo in Vehiculos.lista:
+                print(vehiculo)
+
+        @staticmethod
+        def crear_vehiculos():
+            with open(config.VEHÍCULOS.CSV, 'w', newline='\n') as csvfile:   #with open() sirve para abrir un archivo y cerrarlo automáticamente. config.VEHÍCULOS.CSV es el archivo csv que se va a abrir
+                writer = csv.writer(csvfile, delimiter=';')
+                for vehiculo in Vehiculos.lista:
+                    writer.writerow(vehiculo.to_dict().values())
         
+        @staticmethod
+        def borrar_vehiculo():
+            vehiculo=helpers.leer_texto(3,3, "DNI(2 números y una letra):").upper()    #leemos el dni del cliente y  lo pasamos a mayusculas
+            print("Cliente borrado correctamente") if db.Clientes.borrar(dni) else print("No se ha encontrado el cliente") 
