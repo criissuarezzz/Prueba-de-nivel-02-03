@@ -81,7 +81,7 @@ print(moto)
 
 class Vehiculos():
     lista=[]
-    with open(config.VEHÍCULOS.CSV, newline='\n') as csvfile:
+    with open(config.DATABASE_PATH, newline="\n") as csvfile:
         reader = csv.reader(csvfile, delimiter=';')
         for color, ruedas, velocidad, cilindrada, carga, tipo in reader:
             if velocidad != "":
@@ -102,6 +102,7 @@ class Vehiculos():
             for vehiculo in Vehiculos.lista:
                 if vehiculo.ruedas == ruedas:
                     print(vehiculo)
+
 
         @staticmethod
         def catalogar_color(color):
@@ -141,7 +142,7 @@ class Vehiculos():
 
         @staticmethod
         def crear_vehiculos():
-            with open(config.VEHÍCULOS.CSV, 'w', newline='\n') as csvfile:   #with open() sirve para abrir un archivo y cerrarlo automáticamente. config.VEHÍCULOS.CSV es el archivo csv que se va a abrir
+            with open(config.DATABASE_PATH, 'w', newline='\n') as csvfile:   #with open() sirve para abrir un archivo y cerrarlo automáticamente. config.VEHÍCULOS.CSV es el archivo csv que se va a abrir
                 writer = csv.writer(csvfile, delimiter=';')
                 for vehiculo in Vehiculos.lista:
                     writer.writerow(vehiculo.to_dict().values())
