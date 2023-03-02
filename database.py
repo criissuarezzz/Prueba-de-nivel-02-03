@@ -14,5 +14,30 @@ class Vehículo:
             'ruedas': self.ruedas
         }
 
-class Coche(Vehículo):
+class Vehículos:
+    def __init__(self):
+        self.vehículos = []
     
+    def add(self, vehículo):
+        self.vehículos.append(vehículo)
+    
+    def __iter__(self):
+        return iter(self.vehículos)
+    
+    def __len__(self):
+        return len(self.vehículos)
+    
+    def __str__(self):
+        return str(self.vehículos)
+    
+    def to_dict(self):
+        return [vehículo.to_dict() for vehículo in self.vehículos]
+    
+    def to_csv(self):
+        with open(config.VEHÍCULOS_CSV, 'w', newline='') as csvfile:
+            fieldnames = ['color', 'ruedas']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for vehículo in self.vehículos:
+                writer.writerow(vehículo.to_dict())
+        
