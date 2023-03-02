@@ -6,16 +6,13 @@ import helpers
 import database as db
 
 class Vehiculo():
-    def __init__(self, color, ruedas):
+    def __init__(self, color, ruedas, velocidad, cilindrada, carga, tipo):
         self.color=color
         self.ruedas=ruedas
-    def __str__(self):
-        return "El color es "+self.color+" y tiene "+str(self.ruedas)+" ruedas"
-    def to_dict(self):
-        return {
-            'color': self.color,
-            'ruedas': self.ruedas
-        }
+        self.velocidad=velocidad
+        self.cilindrada=cilindrada
+        self.carga=carga
+        self.tipo=tipo
 
 class Coche(Vehiculo):
     def __init__(self, color, ruedas, velocidad, cilindrada):
@@ -79,8 +76,11 @@ moto=Motocicleta("negra", 2, "urbana", 200, 1000)
 print(moto)
 
 
-class Vehiculos():
+class Vehiculos:
+    
+
     lista=[]
+    
     with open(config.DATABASE_PATH, newline="\n") as csvfile:
         reader = csv.reader(csvfile, delimiter=';')
         for color, ruedas, velocidad, cilindrada, carga, tipo in reader:
@@ -145,6 +145,22 @@ class Vehiculos():
             with open(config.DATABASE_PATH, 'w', newline='\n') as csvfile:   #with open() sirve para abrir un archivo y cerrarlo automáticamente. config.VEHÍCULOS.CSV es el archivo csv que se va a abrir
                 writer = csv.writer(csvfile, delimiter=';')
                 for vehiculo in Vehiculos.lista:
+                    print(input("COLOR: "), vehiculo.color)
+                    print(input("RUEDDAS: "), vehiculo.ruedas)
+                    if ruedas == 2:
+                        print(input("Bicicleta o motocicleta?: "), vehiculo.tipo)
+                        if tipo == "motocicleta":
+                            print(input("VELOCIDAD: "), vehiculo.velocidad)
+                            print(input("CILINDRADA: "), vehiculo.cilindrada)
+                        elif tipo == "bicicleta":
+                            print(input("TIPO: "), vehiculo.tipo)
+                    elif ruedas == 4:
+                        print(input("Coche o camioneta?: "), vehiculo.tipo)
+                        if tipo == "coche":
+                            print(input("VELOCIDAD: "), vehiculo.velocidad)
+                            print(input("CILINDRADA: "), vehiculo.cilindrada)
+                        elif tipo == "camioneta":
+                            print(helpers.leer_texto.input("CARGA: "), vehiculo.carga)
                     writer.writerow(vehiculo.to_dict().values())
         
         @staticmethod
