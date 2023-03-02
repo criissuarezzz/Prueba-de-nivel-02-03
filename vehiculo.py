@@ -26,3 +26,4 @@ class Camioneta(Coche):
 camioneta=Camioneta("blanco", 4, 120, 3000, 1500)
 print(camioneta)
 
+

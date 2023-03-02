@@ -24,9 +24,6 @@ class Vehículos:
     def __iter__(self):
         return iter(self.vehículos)
     
-    def __len__(self):
-        return len(self.vehículos)
-    
     def __str__(self):
         return str(self.vehículos)
     
@@ -34,7 +31,7 @@ class Vehículos:
         return [vehículo.to_dict() for vehículo in self.vehículos]
     
     def to_csv(self):
-        with open(config.VEHÍCULOS_CSV, 'w', newline='') as csvfile:
+        with open(config.VEHÍCULOS.CSV, 'w', newline='') as csvfile:
             fieldnames = ['color', 'ruedas']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
