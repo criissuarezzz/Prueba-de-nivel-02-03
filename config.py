@@ -1,2 +1,3 @@
 import sys
-DATABASE_PATH='vehiculos.csv'
+
+DATABASE_PATH='VEHÍCULOS.csv'

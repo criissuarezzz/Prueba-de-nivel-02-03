@@ -153,7 +153,6 @@ class Vehiculos:
                 print(input("Pulse enter para continuar:"))
                 if input == "":
                     os.system("cls")
-                    return menu.inicio()
             elif opcion == "n":
                 if ruedas == 4:
                     velocidad=int(input("Introduce la velocidad del vehículo: "))
@@ -166,14 +165,13 @@ class Vehiculos:
                         print(input("Pulse enter para continuar:"))
                         if input == "":
                             os.system("cls")
-                            return menu.inicio()
                     elif input == "n":
                         print("Guardado como coche con "+str(ruedas)+" ruedas, color "+color+", velocidad "+str(velocidad)+" y cilindrada "+str(cilindrada)+".")
                         Vehiculos.lista.append(Coche(color, ruedas, velocidad, cilindrada))
                         print(input("Pulse enter para continuar:"))
                         if input == "":
                             os.system("cls")
-                            return menu.inicio()
+
                 elif ruedas == 2:
                         tipo=input("Introduce el tipo del vehículo(urbana o deportiva): ")
                         print(input("Si lo dejas así será una bicicleta,¿quieres que sea una motocicleta?(s/n)"))
@@ -185,14 +183,14 @@ class Vehiculos:
                             print(input("Pulse enter para continuar:"))
                             if input == "":
                                 os.system("cls")
-                                return menu.inicio()
+
                         elif input == "n":
                             Vehiculos.lista.append(Bicicleta(color, ruedas, tipo))
                             print("Guardado como bicicleta con "+str(ruedas)+" ruedas, color "+color+" y tipo "+tipo+".")
                             print(input("Pulse enter para continuar:"))
                             if input == "":
                                 os.system("cls")
-                                return menu.inicio()
+
             Vehiculos.crear()
            
         
