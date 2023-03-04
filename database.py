@@ -9,6 +9,13 @@ class Vehiculo():
     def __init__(self, color, ruedas):
         self.color=color
         self.ruedas=ruedas
+    def __str__(self):
+        return "El color es "+self.color+" y tiene "+str(self.ruedas)+" ruedas"
+    def to_dict(self):
+        return {
+            'color': self.color,
+            'ruedas': self.ruedas
+        }
 
 
 class Coche(Vehiculo):
@@ -138,15 +145,28 @@ class Vehiculos:
         def crear():
             color=input("Introduce el color del vehículo: ")
             ruedas=int(input("Introduce el número de ruedas del vehículo: "))
-            velocidad=int(input("Introduce la velocidad del vehículo: "))
-            cilindrada=int(input("Introduce la cilindrada del vehículo: "))
-            carga=int(input("Introduce la carga del vehículo: "))
-            tipo=input("Introduce el tipo del vehículo: ")
-            Vehiculos.lista.append(Camioneta(color, ruedas, velocidad, cilindrada, carga))
-            Vehiculos.lista.append(Vehiculo(color, ruedas))
-            Vehiculos.lista.append(Coche(color, ruedas, velocidad, cilindrada))
-            Vehiculos.lista.append(Motocicleta(color, ruedas, tipo, velocidad, cilindrada))
-            Vehiculos.lista.append(Bicicleta(color, ruedas, tipo))
+            print("¿quieres dejarlo como vehículo?(s/n):")
+            if input == "s":
+                Vehiculos.lista.append(Vehiculo(color, ruedas))
+            elif input == "n":
+                if ruedas == 4:
+                    velocidad=int(input("Introduce la velocidad del vehículo: "))
+                    cilindrada=int(input("Introduce la cilindrada del vehículo: "))
+                    print(input("Si lo dejas así será un coche,¿quieres que sea una camioneta?(s/n)"))
+                    if input == "s":
+                        carga=int(input("Introduce la carga del vehículo: "))
+                        Vehiculos.lista.append(Camioneta(color, ruedas, velocidad, cilindrada, carga))
+                    elif input == "n":
+                        Vehiculos.lista.append(Coche(color, ruedas, velocidad, cilindrada))
+                elif ruedas == 2:
+                        tipo=input("Introduce el tipo del vehículo(urbana o deportiva): ")
+                        print(input("Si lo dejas así será una bicicleta,¿quieres que sea una motocicleta?(s/n)"))
+                        if input == "s":
+                            velocidad=int(input("Introduce la velocidad del vehículo: "))
+                            cilindrada=int(input("Introduce la cilindrada del vehículo: "))
+                            Vehiculos.lista.append(Motocicleta(color, ruedas, tipo, velocidad, cilindrada))
+                        elif input == "n":
+                            Vehiculos.lista.append(Bicicleta(color, ruedas, tipo))
             Vehiculos.crear()
            
         

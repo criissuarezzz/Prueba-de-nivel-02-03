@@ -2,6 +2,7 @@ import os
 import helpers
 import database as db
 
+
 def iniciar():
     while True:
         helpers.limpiar_pantalla()
