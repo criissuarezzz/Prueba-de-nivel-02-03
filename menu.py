@@ -22,7 +22,7 @@ def iniciar():
         if opcion == "1":
             print("Has elegido crear un vehiculo")
             print("Cargando...")
-            db.Vehiculos.crear_vehiculos()
+            db.Vehiculos.crear()
         elif opcion == "2":
             print("Has elegido listar los vehiculos")
             print("Cargando...")

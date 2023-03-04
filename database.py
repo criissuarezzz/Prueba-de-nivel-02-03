@@ -3,16 +3,13 @@ import config
 import os
 import platform
 import helpers
-import database as db
+
 
 class Vehiculo():
-    def __init__(self, color, ruedas, velocidad, cilindrada, carga, tipo):
+    def __init__(self, color, ruedas):
         self.color=color
         self.ruedas=ruedas
-        self.velocidad=velocidad
-        self.cilindrada=cilindrada
-        self.carga=carga
-        self.tipo=tipo
+
 
 class Coche(Vehiculo):
     def __init__(self, color, ruedas, velocidad, cilindrada):
@@ -77,8 +74,6 @@ print(moto)
 
 
 class Vehiculos:
-    
-
     lista=[]
     
     with open(config.DATABASE_PATH, newline="\n") as csvfile:
@@ -102,7 +97,6 @@ class Vehiculos:
             for vehiculo in Vehiculos.lista:
                 if vehiculo.ruedas == ruedas:
                     print(vehiculo)
-
 
         @staticmethod
         def catalogar_color(color):
@@ -141,30 +135,23 @@ class Vehiculos:
                 print(vehiculo)
 
         @staticmethod
-        def crear_vehiculos():
-            with open(config.DATABASE_PATH, 'w', newline='\n') as csvfile:   #with open() sirve para abrir un archivo y cerrarlo automáticamente. config.VEHÍCULOS.CSV es el archivo csv que se va a abrir
-                writer = csv.writer(csvfile, delimiter=';')
-                for vehiculo in Vehiculos.lista:
-                    print(input("COLOR: "), vehiculo.color)
-                    print(input("RUEDDAS: "), vehiculo.ruedas)
-                    if ruedas == 2:
-                        print(input("Bicicleta o motocicleta?: "), vehiculo.tipo)
-                        if tipo == "motocicleta":
-                            print(input("VELOCIDAD: "), vehiculo.velocidad)
-                            print(input("CILINDRADA: "), vehiculo.cilindrada)
-                        elif tipo == "bicicleta":
-                            print(input("TIPO: "), vehiculo.tipo)
-                    elif ruedas == 4:
-                        print(input("Coche o camioneta?: "), vehiculo.tipo)
-                        if tipo == "coche":
-                            print(input("VELOCIDAD: "), vehiculo.velocidad)
-                            print(input("CILINDRADA: "), vehiculo.cilindrada)
-                        elif tipo == "camioneta":
-                            print(helpers.leer_texto.input("CARGA: "), vehiculo.carga)
-                    writer.writerow(vehiculo.to_dict().values())
+        def crear():
+            color=input("Introduce el color del vehículo: ")
+            ruedas=int(input("Introduce el número de ruedas del vehículo: "))
+            velocidad=int(input("Introduce la velocidad del vehículo: "))
+            cilindrada=int(input("Introduce la cilindrada del vehículo: "))
+            carga=int(input("Introduce la carga del vehículo: "))
+            tipo=input("Introduce el tipo del vehículo: ")
+            Vehiculos.lista.append(Camioneta(color, ruedas, velocidad, cilindrada, carga))
+            Vehiculos.lista.append(Vehiculo(color, ruedas))
+            Vehiculos.lista.append(Coche(color, ruedas, velocidad, cilindrada))
+            Vehiculos.lista.append(Motocicleta(color, ruedas, tipo, velocidad, cilindrada))
+            Vehiculos.lista.append(Bicicleta(color, ruedas, tipo))
+            Vehiculos.crear()
+           
         
         @staticmethod
         def borrar(posicion):
             posicion=int(input("Introduce la posición del vehículo que quieres borrar: "))
             Vehiculos.lista.pop(posicion)
-            Vehiculos.crear_vehiculos()
+            Vehiculos.crear()
