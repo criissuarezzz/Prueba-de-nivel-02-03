@@ -150,9 +150,10 @@ class Vehiculos:
             if opcion == "s":
                 print("Guardado como vehículo con "+str(ruedas)+" ruedas y color "+color+".")
                 Vehiculos.lista.append(Vehiculo(color, ruedas))
-                print(input("Pulse enter para continuar:"))
-                if input == "":
+                enter=input("Pulsa enter para continuar")
+                if enter == "":
                     os.system("cls")
+                    menu.iniciar()
             elif opcion == "n":
                 if ruedas == 4:
                     velocidad=int(input("Introduce la velocidad del vehículo: "))
@@ -162,15 +163,19 @@ class Vehiculos:
                         carga=int(input("Introduce la carga del vehículo: "))
                         print("Guardado como camioneta con "+str(ruedas)+" ruedas, color "+color+", velocidad "+str(velocidad)+", cilindrada "+str(cilindrada)+" y carga "+str(carga)+".")
                         Vehiculos.lista.append(Camioneta(color, ruedas, velocidad, cilindrada, carga))
-                        print(input("Pulse enter para continuar:"))
-                        if input == "":
+                        enter=input("Pulsa enter para continuar")
+                        if enter == "":
                             os.system("cls")
+                            menu.iniciar()
+
                     elif input == "n":
                         print("Guardado como coche con "+str(ruedas)+" ruedas, color "+color+", velocidad "+str(velocidad)+" y cilindrada "+str(cilindrada)+".")
                         Vehiculos.lista.append(Coche(color, ruedas, velocidad, cilindrada))
-                        print(input("Pulse enter para continuar:"))
-                        if input == "":
+                        enter=input("Pulsa enter para continuar")
+                        if enter == "":
                             os.system("cls")
+                            menu.iniciar()
+
 
                 elif ruedas == 2:
                         tipo=input("Introduce el tipo del vehículo(urbana o deportiva): ")
@@ -180,17 +185,18 @@ class Vehiculos:
                             cilindrada=int(input("Introduce la cilindrada del vehículo: "))
                             Vehiculos.lista.append(Motocicleta(color, ruedas, tipo, velocidad, cilindrada))
                             print("Guardado como motocicleta con "+str(ruedas)+" ruedas, color "+color+", tipo "+tipo+", velocidad "+str(velocidad)+" y cilindrada "+str(cilindrada)+".")
-                            print(input("Pulse enter para continuar:"))
-                            if input == "":
+                            enter=input("Pulsa enter para continuar")
+                            if enter == "":
                                 os.system("cls")
+                                menu.iniciar()
 
                         elif input == "n":
                             Vehiculos.lista.append(Bicicleta(color, ruedas, tipo))
                             print("Guardado como bicicleta con "+str(ruedas)+" ruedas, color "+color+" y tipo "+tipo+".")
-                            print(input("Pulse enter para continuar:"))
-                            if input == "":
+                            enter=input("Pulsa enter para continuar")
+                            if enter == "":
                                 os.system("cls")
-
+                                menu.iniciar()
             Vehiculos.crear()
            
         
