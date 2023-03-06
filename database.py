@@ -31,6 +31,7 @@ class Coche(Vehiculo):
             'velocidad': self.velocidad,
             'cilindrada': self.cilindrada
         }
+
     
 coche=Coche("rojo", 4, 150, 2000)
 print(coche)
@@ -65,7 +66,7 @@ bicicleta=Bicicleta("azul", 2, "urbana")
 print(bicicleta)
 
 class Motocicleta(Vehiculo):
-    def __init__(self, color, ruedas,tipo, velocidad, cilindrada):
+    def __init__(self, color, ruedas, tipo, velocidad, cilindrada):
         super().__init__(color, ruedas)
         self.tipo=tipo
         self.velocidad=velocidad
@@ -84,7 +85,7 @@ print(moto)
 class Vehiculos:
     lista=[]
     
-    with open(config.DATABASE_PATH, newline="\n") as csvfile:
+    with open(config.DATABASE_PATH, newline="\n") as csvfile:   #abrimos el archivo csv y lo leemos para crear los objetos
         reader = csv.reader(csvfile, delimiter=';')
         for color, ruedas, velocidad, cilindrada, carga, tipo in reader:
             if velocidad != "":
@@ -92,13 +93,13 @@ class Vehiculos:
             elif ruedas != "":
                 lista.append(Vehiculo(color, ruedas))
             elif carga != "":
-                lista.append(Coche(color, ruedas, velocidad, cilindrada))
+                lista.append(Coche(color, ruedas, velocidad, cilindrada, None, None))
             elif tipo != "":
-                lista.append(Motocicleta(color, ruedas, tipo, velocidad, cilindrada))
+                lista.append(Motocicleta(color, ruedas, velocidad, cilindrada, None, tipo))
             elif color != "":
-                lista.append(Bicicleta(color, ruedas, tipo))
+                lista.append(Bicicleta(color, ruedas, None, None, None, tipo))
             elif cilindrada != "":
-                lista.append(Camioneta(color, ruedas, velocidad, cilindrada, carga))
+                lista.append(Camioneta(color, ruedas, velocidad, cilindrada, None))
 
         @staticmethod
         def catalogar_ruedas(ruedas):
@@ -149,7 +150,11 @@ class Vehiculos:
             opcion=input("¿quieres dejarlo como vehículo?(s/n):").lower()
             if opcion == "s":
                 print("Guardado como vehículo con "+str(ruedas)+" ruedas y color "+color+".")
-                Vehiculos.lista.append(Vehiculo(color, ruedas))
+                Vehiculos.lista.append(Vehiculo(color, ruedas))  
+                #añadir el objeto al csv
+                with open(config.DATABASE_PATH, "a", newline="\n") as csvfile:
+                    writer = csv.writer(csvfile, delimiter=';')
+                    writer.writerow([color, ruedas, "", "", "", ""])
                 enter=input("Pulsa enter para continuar")
                 if enter == "":
                     os.system("cls")
